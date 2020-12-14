@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "31606013579",
+    "firebase_url": "https://flowers-954bb.firebaseio.com",
+    "project_id": "flowers-954bb",
+    "storage_bucket": "flowers-954bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31606013579:android:7f9450bd2efb9a3a005e8e",
+        "android_client_info": {
+          "package_name": "com.example.android.flowersshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31606013579-qq3is99haj58acba1foqcmupg61ahani.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz8XQpOwYHlwELgUTGGp7OMypMDsYXLt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31606013579-qq3is99haj58acba1foqcmupg61ahani.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

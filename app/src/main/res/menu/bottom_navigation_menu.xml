@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/shopFragment"
+        android:enabled="true"
+        android:icon="@drawable/shop"
+        android:title="" />
+    <item
+        android:id="@+id/basketFragment"
+        android:enabled="true"
+        android:icon="@drawable/basket"
+        android:title="" />
+    <item
+        android:id="@+id/favoriteFragment"
+        android:enabled="true"
+        android:icon="@drawable/favorite"
+        android:title="" />
+    <item
+        android:id="@+id/profileFragment"
+        android:enabled="true"
+        android:icon="@drawable/person"
+        android:title="" />
+</menu>
