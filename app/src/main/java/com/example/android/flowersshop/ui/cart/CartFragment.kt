@@ -1,4 +1,4 @@
-package com.example.android.flowersshop.fragment
+package com.example.android.flowersshop.ui.cart
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.android.flowersshop.R
 
-class BasketFragment : Fragment() {
+class CartFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }

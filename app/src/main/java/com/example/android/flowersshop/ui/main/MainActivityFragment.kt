@@ -1,7 +1,6 @@
-package com.example.android.flowersshop.fragment
+package com.example.android.flowersshop.ui.main
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -16,12 +15,13 @@ class MainActivityFragment : AppCompatActivity() {
         setUpNavigation()
     }
 
-    fun setUpNavigation() {
+    private fun setUpNavigation() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
         val navController = navHostFragment!!.navController
         val bottomNav =
             findViewById<BottomNavigationView>(R.id.bottom_navigation)
         NavigationUI.setupWithNavController(bottomNav, navController)
+
     }
 }

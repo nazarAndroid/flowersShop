@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".fragment.ShopFragment"
+    tools:context=".ui.shop.ShopFragment"
     >
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="5dp"
-        app:cardBackgroundColor="#42B55A"
-        android:visibility="invisible"
+        app:cardBackgroundColor="#40BC38"
+        android:visibility="visible"
         android:id="@+id/bouquet_card_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontal_recycle">
