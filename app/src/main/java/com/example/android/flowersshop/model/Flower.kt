@@ -1,16 +1,13 @@
 package com.example.android.flowersshop.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 
-@Entity(tableName = "flowers_table")
 data class Flower(
-        @PrimaryKey
     var name: String = "",
         var price: Int = 0,
         var photoUrl: String = "",
         var isFavorite: Boolean = false,
-        var isBuy: Boolean? = false,
+        var isBuy: Boolean = false,
+        var isBouquet: Boolean = false,
         var quantity: Int = 1
 ) {
     constructor() : this("",
@@ -18,6 +15,7 @@ data class Flower(
         "",
         false,
         false,
-        1
+        false,
+            1
     )
 }

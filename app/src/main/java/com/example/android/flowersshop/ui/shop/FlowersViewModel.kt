@@ -14,13 +14,13 @@ import com.google.firebase.database.ValueEventListener
 import java.util.ArrayList
 
 class FlowersViewModel : ViewModel() {
+    val flowersLiveData = MutableLiveData<Event<ArrayList<Flower>>>()
+    var flowerList: ArrayList<Flower> = ArrayList()
 
     fun loadFlowers(): LiveData<Event<ArrayList<Flower>>> {
-        val flowersLiveData = MutableLiveData<Event<ArrayList<Flower>>>()
         flowersLiveData.postValue(Event.loading())
-        var flowerList: ArrayList<Flower> = ArrayList()
-
         val database = FirebaseDatabase.getInstance()
+
         database.getReference("flowers/flowersApiece").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (postSnapshot in snapshot.children) {
@@ -32,18 +32,12 @@ class FlowersViewModel : ViewModel() {
 
             override fun onCancelled(error: DatabaseError) {}
         })
-        return flowersLiveData
-    }
-    fun loadBouquetFlowers(): LiveData<Event<ArrayList<Flower>>> {
-        val flowersLiveData = MutableLiveData<Event<ArrayList<Flower>>>()
-        flowersLiveData.postValue(Event.loading())
-        var flowerList: ArrayList<Flower> = ArrayList()
 
-        val database = FirebaseDatabase.getInstance()
         database.getReference("flowers/bouquet").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (postSnapshot in snapshot.children) {
                     val flower: Flower = postSnapshot.getValue(Flower::class.java)!!
+                    flower.isBouquet = true
                     flowerList.add(flower)
                     flowersLiveData.postValue(Event.success(flowerList))
                 }
@@ -51,6 +45,10 @@ class FlowersViewModel : ViewModel() {
 
             override fun onCancelled(error: DatabaseError) {}
         })
+
         return flowersLiveData
     }
+
+
+
 }

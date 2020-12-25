@@ -5,15 +5,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.android.flowersshop.R
+import com.example.android.flowersshop.model.Flower
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivityFragment : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setUpNavigation()
     }
+
 
     private fun setUpNavigation() {
         val navHostFragment =

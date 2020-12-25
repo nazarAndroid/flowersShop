@@ -1,10 +1,12 @@
 package com.example.android.flowersshop.ui.shop
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.flowersshop.R
@@ -12,9 +14,14 @@ import com.example.android.flowersshop.model.Flower
 import com.squareup.picasso.Picasso
 import java.util.*
 
-class AdapterRecycle : RecyclerView.Adapter<AdapterRecycle.FlowerViewHolder>() {
+class AdapterRecycler(private val listener: FlowerListener) : RecyclerView.Adapter<AdapterRecycler.FlowerViewHolder>() {
 
     private var all_flowers: ArrayList<Flower> = ArrayList()
+
+    interface FlowerListener {
+        fun onFlowerUpd(position: Int)
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlowerViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -25,7 +32,7 @@ class AdapterRecycle : RecyclerView.Adapter<AdapterRecycle.FlowerViewHolder>() {
             val params = view.layoutParams as GridLayoutManager.LayoutParams
             params.marginStart = (parent.measuredWidth / 2 - view.layoutParams.width) / 2
         }
-        return FlowerViewHolder(view)
+        return FlowerViewHolder(view, listener)
     }
 
     override fun onBindViewHolder(holder: FlowerViewHolder, position: Int) {
@@ -40,7 +47,7 @@ class AdapterRecycle : RecyclerView.Adapter<AdapterRecycle.FlowerViewHolder>() {
         return all_flowers.size
     }
 
-    class FlowerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class FlowerViewHolder(itemView: View, listener:FlowerListener) : RecyclerView.ViewHolder(itemView) {
         var name_tv: TextView?
         var price_tv: TextView?
         var photo_flower: ImageView?
@@ -48,19 +55,21 @@ class AdapterRecycle : RecyclerView.Adapter<AdapterRecycle.FlowerViewHolder>() {
         var buy: ImageView
         var flower: Flower? = null
 
+        @SuppressLint("SetTextI18n")
         fun bind(flower: Flower) {
             this.flower = flower
             name_tv?.text = flower.name
             price_tv?.text = flower.price.toString() + " ₴"
             if (flower.isFavorite) {
-                favorite?.setImageResource(R.drawable.ic_favorite)
+                favorite.setImageResource(R.drawable.ic_favorite)
             } else {
-                favorite?.setImageResource(R.drawable.favorite)
+                favorite.setImageResource(R.drawable.favorite)
             }
             if (!flower.isBuy!!) {
-                buy?.setImageResource(R.drawable.add)
-            } else {
-                buy?.setImageResource(R.drawable.add_to_cart)
+                buy.setImageResource(R.drawable.add)
+            }
+            else {
+                buy.setImageResource(R.drawable.add_to_cart)
             }
             Picasso.get()
                     .load(flower.photoUrl)
@@ -76,9 +85,11 @@ class AdapterRecycle : RecyclerView.Adapter<AdapterRecycle.FlowerViewHolder>() {
             favorite = itemView.findViewById(R.id.favorite)
             buy.setOnClickListener {
                 flower?.isBuy = !flower?.isBuy!!
+                listener.onFlowerUpd(adapterPosition)
             }
             favorite.setOnClickListener {
                 flower?.isFavorite = !flower?.isFavorite!!
+                listener.onFlowerUpd(adapterPosition)
             }
         }
     }
